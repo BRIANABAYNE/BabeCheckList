@@ -13,6 +13,7 @@
 		3AAACAC52B88F826008C63A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAACAC42B88F826008C63A9 /* Assets.xcassets */; };
 		3AAACAC82B88F826008C63A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAACAC62B88F826008C63A9 /* LaunchScreen.storyboard */; };
 		3AAACAD02B88F934008C63A9 /* BabeToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */; };
+		3AAACAD22B8901E3008C63A9 /* BabeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3AAACAC72B88F826008C63A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AAACAC92B88F826008C63A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeToDoTableViewController.swift; sourceTree = "<group>"; };
+		3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				3AAACABB2B88F825008C63A9 /* AppDelegate.swift */,
 				3AAACABD2B88F825008C63A9 /* SceneDelegate.swift */,
 				3AAACAC12B88F825008C63A9 /* Main.storyboard */,
+				3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */,
 				3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */,
 				3AAACAC42B88F826008C63A9 /* Assets.xcassets */,
 				3AAACAC62B88F826008C63A9 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAACABC2B88F825008C63A9 /* AppDelegate.swift in Sources */,
+				3AAACAD22B8901E3008C63A9 /* BabeDetailViewController.swift in Sources */,
 				3AAACABE2B88F825008C63A9 /* SceneDelegate.swift in Sources */,
 				3AAACAD02B88F934008C63A9 /* BabeToDoTableViewController.swift in Sources */,
 			);

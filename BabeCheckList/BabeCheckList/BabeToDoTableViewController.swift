@@ -9,13 +9,49 @@ import UIKit
 
 class BabeToDoTableViewController: UITableViewController {
 
-    let itemArray = ["Workout","Eat Healthy", "Do Therapy"]
+    var itemArray = ["Workout","Eat Healthy", "Do Therapy"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        /// BarButton
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(UIbarButtonItem))
+
     }
+                                                                                        
+        
+   @objc func UIbarButtonItem() {
+       
+       
+       var textField = UITextField()
+       
+       /// Segue
+//       let storyboard =  UIStoryboard(name: "Main", bundle: nil)
+//       let segue = storyboard.instantiateViewController(withIdentifier: "babeDetailVC")
+//       self.view.window?.rootViewController = segue
+//       
+       let alert = UIAlertController(title: "Babe, what do you need to do today?", message: "", preferredStyle: .alert)
+       let action = UIAlertAction(title: "Add Item", style: .destructive) { (action) in
+           
+           
+           self.itemArray.append(textField.text!)
+           self.tableView.reloadData()
+       }
+       
+       alert.addTextField { alertTextField in
+           alertTextField.placeholder = "Add new item"
+           textField = alertTextField
+       }
+       
+       alert.addAction(action)
+       print("alert is working")
+       
+       present(alert, animated: true)
+       
+        }
+                                                                                          
 
     // MARK: - Table view data source
 
@@ -81,6 +117,9 @@ class BabeToDoTableViewController: UITableViewController {
         
         /// When selected, it goes gray and then back to white
         tableView.deselectRow(at: indexPath, animated: true)
+        
+      
+        
         
         
     }

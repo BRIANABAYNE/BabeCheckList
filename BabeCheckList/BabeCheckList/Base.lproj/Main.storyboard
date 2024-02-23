@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,6 +36,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Bh-3H-Qc6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1694" y="-20"/>
+        </scene>
+        <!--Babe Detail View Controller-->
+        <scene sceneID="qJl-XJ-Pev">
+            <objects>
+                <viewController storyboardIdentifier="babeDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Z6b-dv-EG8" customClass="BabeDetailViewController" customModule="BabeCheckList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r0b-DI-VI6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Qbd-MC-e1h"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SIf-d7-4bS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2465" y="-20"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xDB-P0-z3A">
