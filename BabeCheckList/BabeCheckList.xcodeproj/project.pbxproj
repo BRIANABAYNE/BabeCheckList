@@ -14,6 +14,7 @@
 		3AAACAC82B88F826008C63A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAACAC62B88F826008C63A9 /* LaunchScreen.storyboard */; };
 		3AAACAD02B88F934008C63A9 /* BabeToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */; };
 		3AAACAD22B8901E3008C63A9 /* BabeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */; };
+		3AAACAD42B8A7B71008C63A9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAD32B8A7B71008C63A9 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		3AAACAC92B88F826008C63A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeToDoTableViewController.swift; sourceTree = "<group>"; };
 		3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeDetailViewController.swift; sourceTree = "<group>"; };
+		3AAACAD32B8A7B71008C63A9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,49 @@
 		3AAACABA2B88F825008C63A9 /* BabeCheckList */ = {
 			isa = PBXGroup;
 			children = (
-				3AAACABB2B88F825008C63A9 /* AppDelegate.swift */,
-				3AAACABD2B88F825008C63A9 /* SceneDelegate.swift */,
-				3AAACAC12B88F825008C63A9 /* Main.storyboard */,
-				3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */,
-				3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */,
-				3AAACAC42B88F826008C63A9 /* Assets.xcassets */,
+				3AAACAD82B8A7C9E008C63A9 /* Controllers */,
+				3AAACAD72B8A7BE8008C63A9 /* SupportingFiles */,
+				3AAACAD62B8A7BD7008C63A9 /* MainStoryboard */,
 				3AAACAC62B88F826008C63A9 /* LaunchScreen.storyboard */,
-				3AAACAC92B88F826008C63A9 /* Info.plist */,
+				3AAACAD52B8A7BCA008C63A9 /* Model */,
 			);
 			path = BabeCheckList;
+			sourceTree = "<group>";
+		};
+		3AAACAD52B8A7BCA008C63A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3AAACAD32B8A7B71008C63A9 /* Item.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3AAACAD62B8A7BD7008C63A9 /* MainStoryboard */ = {
+			isa = PBXGroup;
+			children = (
+				3AAACAC12B88F825008C63A9 /* Main.storyboard */,
+			);
+			path = MainStoryboard;
+			sourceTree = "<group>";
+		};
+		3AAACAD72B8A7BE8008C63A9 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3AAACABB2B88F825008C63A9 /* AppDelegate.swift */,
+				3AAACABD2B88F825008C63A9 /* SceneDelegate.swift */,
+				3AAACAC42B88F826008C63A9 /* Assets.xcassets */,
+				3AAACAC92B88F826008C63A9 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3AAACAD82B8A7C9E008C63A9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */,
+				3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AAACAD42B8A7B71008C63A9 /* Item.swift in Sources */,
 				3AAACABC2B88F825008C63A9 /* AppDelegate.swift in Sources */,
 				3AAACAD22B8901E3008C63A9 /* BabeDetailViewController.swift in Sources */,
 				3AAACABE2B88F825008C63A9 /* SceneDelegate.swift in Sources */,
@@ -298,7 +334,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5MZCV93J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BabeCheckList/Info.plist;
+				INFOPLIST_FILE = BabeCheckList/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -326,7 +362,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5MZCV93J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BabeCheckList/Info.plist;
+				INFOPLIST_FILE = BabeCheckList/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

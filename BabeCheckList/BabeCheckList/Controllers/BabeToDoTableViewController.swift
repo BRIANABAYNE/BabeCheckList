@@ -9,21 +9,42 @@ import UIKit
 
 class BabeToDoTableViewController: UITableViewController {
 
-    var itemArray = ["Workout","Eat Healthy", "Do Therapy"]
+//    var itemArray = ["Workout","Eat Healthy", "Do Therapy"]
     
+    /// UserDefaults = Are saved as a key value pair inside of a plist file. It can be saved as an array, string, dictionary
+    
+    /// USERDefaults: Step 1
+//    let defaults = UserDefaults.standard
+    
+    
+    var itemArray = [Item]()
+    
+    
+    /// Creating the path for NSCoder - saving and retrieve  from
+    let dataFilePath = FileManager.default.urls(
+        for: .documentDirectory, 
+        in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+       
+    
+// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
+        loadItems()
         
         /// BarButton
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(UIbarButtonItem))
-
+        
+    
+//        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
+//            itemArray = items
+//        }
+//        
     }
                                                                                         
-        
    @objc func UIbarButtonItem() {
-       
        
        var textField = UITextField()
        
@@ -36,8 +57,14 @@ class BabeToDoTableViewController: UITableViewController {
        let action = UIAlertAction(title: "Add Item", style: .destructive) { (action) in
            
            
-           self.itemArray.append(textField.text!)
-           self.tableView.reloadData()
+           var newItem = Item()
+           newItem.title = textField.text!
+           self.itemArray.append(newItem)
+           self.saveItems()
+           
+           /// USERDefaults: Step 2
+//           self.defaults.set(self.itemArray, forKey: "ToDoListArray")
+        
        }
        
        alert.addTextField { alertTextField in
@@ -51,6 +78,32 @@ class BabeToDoTableViewController: UITableViewController {
        present(alert, animated: true)
        
         }
+    
+    /// Saving with NSCoder
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding item array, \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    /// Fetching the items in the ItemsArray 
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error loading")
+            }
+        }
+    }
                                                                                           
 
     // MARK: - Table view data source
@@ -63,7 +116,13 @@ class BabeToDoTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "babeCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        let item = itemArray[indexPath.row]
+        cell.textLabel?.text = item.title
+        
+        /// Ternary operator
+        cell.accessoryType = item.done  ? .checkmark : .none
+    
+        
         return cell
     }
     
@@ -107,21 +166,21 @@ class BabeToDoTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(itemArray[indexPath.row])
         
-        /// Adds a chevron
+       
+        /// Checked or not checked
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        saveItems()
         
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+        /// Adds a chevron
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//        }
         
         /// When selected, it goes gray and then back to white
         tableView.deselectRow(at: indexPath, animated: true)
-        
-      
-        
-        
-        
+    
     }
 
     /*
