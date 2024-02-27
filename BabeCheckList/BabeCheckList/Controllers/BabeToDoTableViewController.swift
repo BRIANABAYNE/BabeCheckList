@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import CoreData
 
 class BabeToDoTableViewController: UITableViewController {
+    
 
 //    var itemArray = ["Workout","Eat Healthy", "Do Therapy"]
     
@@ -18,8 +20,8 @@ class BabeToDoTableViewController: UITableViewController {
     
     
     var itemArray = [Item]()
-    
-    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     /// Creating the path for NSCoder - saving and retrieve  from
     let dataFilePath = FileManager.default.urls(
         for: .documentDirectory, 
@@ -31,13 +33,17 @@ class BabeToDoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        loadItems()
+        /// NSPredicate is a query language, it's a foundation class that specifies how data should be fetched or filtered.
+    let request: NSFetchRequest<Item> = Item.fetchRequest()
+      
+        
+        loadItems(with: request)
+        configureSearchBar()
         
         /// BarButton
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(UIbarButtonItem))
         
-    
+    /// UserDefaults
 //        if let items = defaults.array(forKey: "ToDoListArray") as? [Item] {
 //            itemArray = items
 //        }
@@ -56,10 +62,17 @@ class BabeToDoTableViewController: UITableViewController {
        let alert = UIAlertController(title: "Babe, what do you need to do today?", message: "", preferredStyle: .alert)
        let action = UIAlertAction(title: "Add Item", style: .destructive) { (action) in
            
+           /// Step 1 of CoreData after setting up class - moved this line of code to line 21 to access it in other places in this file
+//           let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
            
-           var newItem = Item()
+           /// Step 1 - Custom Class Item
+           let newItem = Item(context: self.context)
+           
+        
            newItem.title = textField.text!
+           newItem.done = false
            self.itemArray.append(newItem)
+           /// Calling the save for coreData
            self.saveItems()
            
            /// USERDefaults: Step 2
@@ -79,31 +92,59 @@ class BabeToDoTableViewController: UITableViewController {
        
         }
     
-    /// Saving with NSCoder
+    
+    func configureSearchBar() {
+        let searchController = UISearchController()
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Babe, what are you searching for?"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
+    
+    
+    /// Saving with NSCoder + CoreData - NSCoder is committed out
     func saveItems() {
-        let encoder = PropertyListEncoder()
+        /// Encoder is for Codable Method for persisting and saving data into the plist
+       // let encoder = PropertyListEncoder()
         
         do {
-            let data = try encoder.encode(itemArray)
-            try data.write(to: dataFilePath!)
+            
+            try context.save()
+            
+           // let data = try encoder.encode(itemArray)
+         //   try data.write(to: dataFilePath!)
         } catch {
-            print("Error encoding item array, \(error)")
+            print("Error saving context, \(error)")
         }
         
         self.tableView.reloadData()
     }
     
-    /// Fetching the items in the ItemsArray 
-    func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!) {
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                print("Error loading")
-            }
+    /// Creating persistence for coreData - LOAD
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+        /// Make sure to specify the data type <Item>
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+          itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching the data")
         }
     }
+    
+    
+    
+    /// Fetching the items in the ItemsArray - Codable
+//    func loadItems() {
+//        if let data = try? Data(contentsOf: dataFilePath!) {
+//            let decoder = PropertyListDecoder()
+//            do {
+//             //   itemArray = try decoder.decode([Item].self, from: data)
+//            } catch {
+//                print("Error loading")
+//            }
+//        }
+//    }
                                                                                           
 
     // MARK: - Table view data source
@@ -193,4 +234,41 @@ class BabeToDoTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: - Search Bar Methods
+
+/// Extending the functionality - Handling the SearchBar Methods
+extension BabeToDoTableViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        /// NSPredicate is a query language, it's a foundation class that specifies how data should be fetched or filtered.      
+        ///  Refactoring code to use less code but keeping to reference
+       // let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+       // request.predicate = predicate
+        
+        /// Refactor
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+
+        
+        /// OLD code
+//        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+//        /// This property comes back as an array and that's why it's sortDescriptorS
+//        request.sortDescriptors = [sortDescriptor]
+        //request.sortDescriptors = [SortDescriptor]
+        
+        /// Refactor
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        /// Refactoring the code so I can use this code in other places on this file without writing it all out
+//        do {
+//            itemArray = try context.fetch(request)
+//        } catch {
+//            print("Error fetching the data")
+//        }
+//        tableView.reloadData()
+        
+        loadItems(with: request)
+    }
 }
