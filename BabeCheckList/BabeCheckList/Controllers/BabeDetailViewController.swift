@@ -14,12 +14,6 @@ class BabeDetailViewController: UIViewController {
 
     }
     
-
-    
-  
-    
-    
-    
     /*
     // MARK: - Navigation
 

@@ -33,12 +33,10 @@ class BabeToDoTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /// NSPredicate is a query language, it's a foundation class that specifies how data should be fetched or filtered.
-    let request: NSFetchRequest<Item> = Item.fetchRequest()
-      
+        title = "Items"
         
-        loadItems(with: request)
-        configureSearchBar()
+    configureSearchBar()
+        loadItems()
         
         /// BarButton
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(UIbarButtonItem))
@@ -124,12 +122,14 @@ class BabeToDoTableViewController: UITableViewController {
     /// Creating persistence for coreData - LOAD
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
         /// Make sure to specify the data type <Item>
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
+//        let request: NSFetchRequest<Item> = Item.fetchRequest()
         do {
           itemArray = try context.fetch(request)
         } catch {
             print("Error fetching the data")
         }
+        
+        self.tableView.reloadData()
     }
     
     
@@ -242,6 +242,8 @@ class BabeToDoTableViewController: UITableViewController {
 extension BabeToDoTableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
+        /// NSPredicate is a query language, it's a foundation class that specifies how data should be fetched or filtered.
+      
         let request: NSFetchRequest<Item> = Item.fetchRequest()
         /// NSPredicate is a query language, it's a foundation class that specifies how data should be fetched or filtered.      
         ///  Refactoring code to use less code but keeping to reference
@@ -271,4 +273,18 @@ extension BabeToDoTableViewController: UISearchBarDelegate {
         
         loadItems(with: request)
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            /// Telling the searchBar to end it's status as the first responder - telling it no longer be selected
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+        
+    }
+    
 }
+

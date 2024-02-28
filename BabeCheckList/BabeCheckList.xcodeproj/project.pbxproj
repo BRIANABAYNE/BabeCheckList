@@ -15,6 +15,7 @@
 		3AAACAD02B88F934008C63A9 /* BabeToDoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */; };
 		3AAACAD22B8901E3008C63A9 /* BabeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */; };
 		3AAACADB2B8D80C7008C63A9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAD92B8D80C7008C63A9 /* DataModel.xcdatamodeld */; };
+		3AAACB002B8E5716008C63A9 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAACAFF2B8E5716008C63A9 /* CategoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeToDoTableViewController.swift; sourceTree = "<group>"; };
 		3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabeDetailViewController.swift; sourceTree = "<group>"; };
 		3AAACADA2B8D80C7008C63A9 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3AAACAFF2B8E5716008C63A9 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +101,9 @@
 		3AAACAD82B8A7C9E008C63A9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */,
+				3AAACAFF2B8E5716008C63A9 /* CategoryTableViewController.swift */,
 				3AAACACF2B88F934008C63A9 /* BabeToDoTableViewController.swift */,
+				3AAACAD12B8901E3008C63A9 /* BabeDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				3AAACADB2B8D80C7008C63A9 /* DataModel.xcdatamodeld in Sources */,
 				3AAACABE2B88F825008C63A9 /* SceneDelegate.swift in Sources */,
 				3AAACAD02B88F934008C63A9 /* BabeToDoTableViewController.swift in Sources */,
+				3AAACB002B8E5716008C63A9 /* CategoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
